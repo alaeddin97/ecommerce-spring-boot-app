@@ -1,10 +1,9 @@
 package com.justatech.ecommerce.services;
 
-import com.justatech.ecommerce.entities.ProductCategory;
+import com.justatech.ecommerce.domain.ProductCategory;
 import com.justatech.ecommerce.repositories.ProductCategoryRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

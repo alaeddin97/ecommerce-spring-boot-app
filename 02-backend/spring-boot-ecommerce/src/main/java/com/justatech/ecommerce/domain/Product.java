@@ -1,4 +1,4 @@
-package com.justatech.ecommerce.entities;
+package com.justatech.ecommerce.domain;
 
 import jakarta.persistence.*;
 

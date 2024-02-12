@@ -1,17 +1,7 @@
 package com.justatech.ecommerce;
 
-import com.justatech.ecommerce.entities.Product;
-import com.justatech.ecommerce.entities.ProductCategory;
-import com.justatech.ecommerce.services.ProductCategoryService;
-import com.justatech.ecommerce.services.ProductService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @SpringBootApplication
 public class SpringBootEcommerceApplication {
@@ -19,7 +9,7 @@ public class SpringBootEcommerceApplication {
 		SpringApplication.run(SpringBootEcommerceApplication.class, args);
 	}
 
-	@Bean
+/*	@Bean
 	public CommandLineRunner demo(ProductCategoryService productCategoryService, ProductService productService) {
 		return args -> {
 			ProductCategory productCategory = new ProductCategory("BOOKS");
@@ -35,6 +25,6 @@ public class SpringBootEcommerceApplication {
 					productCategoryOptional.get());
 			productService.save(product1);
 		};
-	}
+	}*/
 
 }
