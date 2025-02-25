@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {map} from 'rxjs'
+import {map, Subject} from 'rxjs'
 import { Product } from '../shared/product';
 
 @Injectable({
@@ -8,6 +8,8 @@ import { Product } from '../shared/product';
 })
 export class ProductListService {
 
+  public selectedCat = new Subject<number>();
+  
   constructor(private http: HttpClient) { }
 
   getAllProducts(url: string) {

@@ -1,3 +1,5 @@
+import { ProductCategory } from "./productCategory";
+
 export class Product {
     constructor(
         public sku:string, 
@@ -7,5 +9,6 @@ export class Product {
         public imageUrl:string,
         public unitsInStock:number,
         public dateCreated:Date,
-        public lastUpdated:Date) {}
+        public lastUpdated:Date,
+        public productCategory:ProductCategory) {}
 }
