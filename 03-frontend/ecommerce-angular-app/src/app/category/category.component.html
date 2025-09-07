@@ -1,10 +1,25 @@
+<aside class="menu-sidebar d-none d-lg-block">
+    <div class="logo">
+      <a href="#">
+        <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
+      </a>
+    </div>
 <div class="menu-sidebar-content js-scrollbar1">
     <nav class="navbar-sidebar">
-      <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action" (click)="onClick(1)">Books</a>
-        <a href="#" class="list-group-item list-group-item-action"(click)="onClick(2)">Coffee Mugs</a>
-        <a href="#" class="list-group-item list-group-item-action"(click)="onClick(3)">Mouse Pads</a>
-        <a href="#" class="list-group-item list-group-item-action"(click)="onClick(4)">Luggage Tags</a>
-      </div>
+      <ul class="list-unstyled navbar-list">
+        <li>
+          <a (click)="onClick(1)">Books</a>
+        </li>
+        <li>
+          <a (click)="onClick(2)">Coffee Mugs</a>
+        </li>
+        <li>
+          <a (click)="onClick(3)">Mouse Pads</a>
+        </li>
+        <li>
+          <a (click)="onClick(4)">Luggage Tags</a>
+        </li>
+      </ul>
     </nav>
   </div>
+</aside>

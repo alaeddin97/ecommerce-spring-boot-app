@@ -7,8 +7,6 @@ import { Product } from '../shared/product';
   providedIn: 'root'
 })
 export class ProductListService {
-
-  public selectedCat = new Subject<number>();
   
   constructor(private http: HttpClient) { }
 

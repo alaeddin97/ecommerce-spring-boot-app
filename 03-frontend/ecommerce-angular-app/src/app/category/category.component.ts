@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductListService } from '../product-list/product-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -8,13 +9,13 @@ import { ProductListService } from '../product-list/product-list.service';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private productService:ProductListService) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
   onClick(id:number) {
-    this.productService.selectedCat.next(id);
+    this.router.navigate([`category/${id}`])
   }
 
 }

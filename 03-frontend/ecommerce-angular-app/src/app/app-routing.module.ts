@@ -3,7 +3,10 @@ import { ProductListComponent } from "./product-list/product-list.component";
 import { NgModule } from "@angular/core";
 
 const appRoutes: Routes = [
-    {path:'products', component: ProductListComponent}
+    {path:'category/:id', component: ProductListComponent},
+    {path:'products', component: ProductListComponent},
+    { path: '', redirectTo: 'products', pathMatch: 'full'}
+
 ];
 
 @NgModule(
