@@ -3,9 +3,10 @@
       <div class="container-fluid">
         <div class="header-wrap">
           <form class="form-header" onsubmit="return false;" method="GET">
-            <input class="au-input au-input-xl" type="text" name="search"
+            <input class="au-input au-input-xl" type="text" name="search" (input)="searchProductByName($event)"
               placeholder="Search for data ..." />
-            <button class="au-btn-submit" type="submit">
+            <button class="au-btn-submit" type="submit" 
+            *ngIf="false">
               Search
             </button>
           </form>

@@ -6,18 +6,9 @@
     </div>
 <div class="menu-sidebar-content js-scrollbar1">
     <nav class="navbar-sidebar">
-      <ul class="list-unstyled navbar-list">
+      <ul class="list-unstyled navbar-list" *ngFor="let category of categories">
         <li>
-          <a (click)="onClick(1)">Books</a>
-        </li>
-        <li>
-          <a (click)="onClick(2)">Coffee Mugs</a>
-        </li>
-        <li>
-          <a (click)="onClick(3)">Mouse Pads</a>
-        </li>
-        <li>
-          <a (click)="onClick(4)">Luggage Tags</a>
+          <a (click)="onClick(category.id)">{{category.name}}</a>
         </li>
       </ul>
     </nav>

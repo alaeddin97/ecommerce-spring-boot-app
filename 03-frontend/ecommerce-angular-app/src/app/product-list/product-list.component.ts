@@ -11,23 +11,18 @@ import { Location } from '@angular/common';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] = [];
-  productsByCat: Product[] = [];
-  categoryId: number = 0;
+  viewProducts: Product[] = [];
 
-  constructor(private productListService: ProductListService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private productListService: ProductListService, private location: Location) { }
 
   ngOnInit(): void {
     this.getAllProducts('http://localhost:8080/api/products').subscribe(
       products => {
-        this.products = products;
-        this.route.paramMap.subscribe((params) => {
-          const idParam = params.get('id');
-          this.categoryId = idParam ? +idParam : 0;
-          this.productsByCat = this.products.filter(item => this.categoryId === 0 || item.productCategory.id === this.categoryId);
-        });
-      }
-    )
+        this.productListService.setProducts(products);
+      })
+      this.productListService.viewProducts.subscribe(viewProducts => {
+          this.viewProducts = viewProducts;
+      });
   }
 
   getAllProducts(url:string) {
@@ -35,9 +30,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getAbsoluteImageUrl(url: string): string {
-  console.log( this.location.prepareExternalUrl(url));
-  
-  return this.location.prepareExternalUrl(url);
-}
+    return this.location.prepareExternalUrl(url);
+  }
 
 }

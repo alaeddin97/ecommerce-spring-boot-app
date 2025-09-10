@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductListService } from '../product-list/product-list.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productListService: ProductListService) { }
 
   ngOnInit(): void {
   }
 
+  searchProductByName(event: any) {
+    this.productListService.searchByName(event.target.value);
+  }
 }
