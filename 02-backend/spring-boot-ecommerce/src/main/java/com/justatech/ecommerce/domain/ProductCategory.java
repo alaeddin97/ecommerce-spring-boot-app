@@ -9,7 +9,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data // There use to be a problem with this and @OneToMany
 public class ProductCategory {
     @Column(name = "id")
     @Id
