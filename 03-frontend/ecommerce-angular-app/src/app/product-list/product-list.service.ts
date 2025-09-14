@@ -37,4 +37,7 @@ export class ProductListService {
     this.viewProducts.next(filtered);
   }
 
+  getProductById(id: number): Product{
+    return this.products.value.filter(product => product.id === id)[0];
+  }
 }

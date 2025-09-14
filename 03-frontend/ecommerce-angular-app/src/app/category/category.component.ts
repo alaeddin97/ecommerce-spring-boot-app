@@ -12,9 +12,9 @@ export class CategoryComponent implements OnInit {
 
   categories = [
     {id: 1, name: 'Books'},
-    {id: 2, name: 'Electronics'},
-    {id: 3, name: 'Computers'},
-    {id: 4, name: 'Home & Kitchen'}
+    {id: 2, name: 'Coffee Mugs'},
+    {id: 3, name: 'Mouse Pads'},
+    {id: 4, name: 'Luggage Tags'}
   ];
   constructor(private router:Router, private route: ActivatedRoute, private productListService: ProductListService) { }
 
@@ -22,7 +22,6 @@ export class CategoryComponent implements OnInit {
   }
 
   onClick(id:number) {
-    this.productListService.setCategory(id);
     this.router.navigate([`category/${id}`])
   }
 

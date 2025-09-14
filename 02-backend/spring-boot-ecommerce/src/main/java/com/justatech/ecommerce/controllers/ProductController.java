@@ -1,8 +1,9 @@
 package com.justatech.ecommerce.controllers;
 
+import com.justatech.ecommerce.dao.ProductRepository;
 import com.justatech.ecommerce.domain.Product;
-import com.justatech.ecommerce.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,20 +11,15 @@ import java.util.List;
 @CrossOrigin("http://localhost:4200")
 @RestController
 public class ProductController {
-    private final ProductService productService;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
+    public ProductController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     @GetMapping("/products")
-    public List<Product> getProducts() {
-       return productService.findAll();
-    }
-
-    @GetMapping("/category/{categoryId}")
-    List<Product> getProductsByCategoryId(@PathVariable("categoryId") Long categoryId) {
-        return productService.findByCategoryId(categoryId);
+    public List<Product> getProducts(Pageable pageable) {
+       return productRepository.findAll(pageable).getContent();
     }
 }
