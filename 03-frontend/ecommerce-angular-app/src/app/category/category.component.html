@@ -1,6 +1,6 @@
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
-      <a href="#">
+      <a (click)="navigateToHomePage()">
         <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
       </a>
     </div>
@@ -8,7 +8,7 @@
     <nav class="navbar-sidebar">
       <ul class="list-unstyled navbar-list" *ngFor="let category of categories">
         <li>
-          <a (click)="onClick(category.id)">{{category.name}}</a>
+          <a (click)="loadProductByCategory(category.id)" [id]="category.id">{{category.name}}</a>
         </li>
       </ul>
     </nav>

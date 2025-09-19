@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductListService } from '../product-list/product-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../shared/product';
 
 @Component({
   selector: 'app-category',
@@ -16,13 +14,27 @@ export class CategoryComponent implements OnInit {
     {id: 3, name: 'Mouse Pads'},
     {id: 4, name: 'Luggage Tags'}
   ];
-  constructor(private router:Router, private route: ActivatedRoute, private productListService: ProductListService) { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
   }
 
-  onClick(id:number) {
-    this.router.navigate([`category/${id}`])
+  loadProductByCategory(id:number) {
+    this.categories.map(category => {
+      if(category.id !== id) {
+        let catEl = document.getElementById(`${category.id}`);
+        catEl ? catEl.style.fontWeight = 'normal' : '';
+      } else {
+        let catEl = document.getElementById(`${category.id}`);
+        catEl ? catEl.style.fontWeight = 'bold' : '';
+      }});
+
+    this.router.navigate([`categories/${id}/products`])
   }
+
+  navigateToHomePage() {
+    this.router.navigate([`products`]);
+  }
+
 
 }

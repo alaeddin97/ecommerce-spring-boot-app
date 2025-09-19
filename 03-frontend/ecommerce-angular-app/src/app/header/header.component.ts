@@ -14,6 +14,6 @@ export class HeaderComponent implements OnInit {
   }
 
   searchProductByName(event: any) {
-    this.productListService.searchByName(event.target.value);
+    //this.productListService.searchByName(event.target.value);
   }
 }

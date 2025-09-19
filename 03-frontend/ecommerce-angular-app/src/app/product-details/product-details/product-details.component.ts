@@ -19,13 +19,21 @@ export class ProductDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if(id) {
-        this.product = this.productListService.getProductById(+id);
+        this.productListService.getProductById(+id).subscribe(
+          product => {
+            this.product = product;
+          }
+        )
       }
   })
 }
 
   getAbsoluteImageUrl(): string {
     return this.location.prepareExternalUrl(this.product.imageUrl);
+  }
+
+  addToCart(product: Product) {
+    this.productListService.addToCart(product);
   }
 
 }

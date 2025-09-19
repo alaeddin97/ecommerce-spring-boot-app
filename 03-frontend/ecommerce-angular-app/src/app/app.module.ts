@@ -11,7 +11,9 @@ import { CategoryComponent } from './category/category.component';
 import { HeaderComponent } from './header/header.component';
 import { ProductDetailsComponent } from './product-details/product-details/product-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CheckoutStatusComponent } from './checkout/checkout-status/checkout-status.component';
+import { CartShoppingDetailsComponent } from './cart/cart-shopping-details/cart-shopping-details.component';
+import { CheckoutStatusComponent } from './cart/cart-status/cart-status.component';
+import { CheckoutComponent } from './checkout/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CheckoutStatusComponent } from './checkout/checkout-status/checkout-sta
     CategoryComponent,
     HeaderComponent,
     ProductDetailsComponent,
-    CheckoutStatusComponent
+    CheckoutStatusComponent,
+    CartShoppingDetailsComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

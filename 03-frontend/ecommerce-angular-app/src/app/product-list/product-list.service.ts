@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Pipe } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, map, Subject} from 'rxjs'
+import {BehaviorSubject, map, Observable, Subject} from 'rxjs'
 import { Product } from '../shared/product';
 
 @Injectable({
@@ -8,36 +8,47 @@ import { Product } from '../shared/product';
 })
 export class ProductListService {
   
-  products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-  viewProducts: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  private baseUrl = 'http://localhost:8080/api';
+  cartProducts: BehaviorSubject<{product : Product, quantity: number}[]> = 
+  new BehaviorSubject<{product : Product, quantity: number}[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  getAllProducts(url: string) {
-    return this.http.get<Product[]>(url).pipe(
-      map(products => products)
+  getAllProducts(page: number, size: number):Observable<ProductResponse> {
+    return this.http.get<ProductResponse>(`${this.baseUrl}/products?page=${page}&size=${size}`).pipe(
+      map(page => {
+        return {content: page.content, totalElements: page.totalElements};
+      })
     )
   }
 
-  setProducts(products: Product[]) {
-    this.products.next(products);
-    this.viewProducts.next(products);
+  getProductByCategory(id: number, page: number, size: number):Observable<ProductResponse> {
+    return this.http.get<ProductResponse>(`${this.baseUrl}/categories/${id}/products?page=${page}&size=${size}`).pipe(
+        map(page => {
+          return {content: page.content, totalElements: page.totalElements};
+      })
+    )
   }
 
-
-  setCategory(id: number) {
-    const allProducts = this.products.value;
-    const filtered = allProducts.filter(product => product.productCategory.id === id);
-    this.viewProducts.next(filtered);
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/products/${id}`).pipe(
+     map(product => product))
   }
 
-  searchByName(name: string) {
-    const allProducts = this.products.value;
-    const filtered = allProducts.filter(product => product.name.toLowerCase().includes(name?.toLowerCase()));
-    this.viewProducts.next(filtered);
+  addToCart(product: Product) {
+    const currentCartProducts = this.cartProducts.value;
+    let index = currentCartProducts.findIndex(item => item.product.id === product.id);
+    if(index !== -1) {
+      currentCartProducts[index].quantity++;
+    } else {
+      currentCartProducts.push({product: product, quantity: 1});
+    }
+    this.cartProducts.next(currentCartProducts);
   }
 
-  getProductById(id: number): Product{
-    return this.products.value.filter(product => product.id === id)[0];
-  }
+}
+
+interface ProductResponse {
+  content: Product[];
+  totalElements: number;
 }
